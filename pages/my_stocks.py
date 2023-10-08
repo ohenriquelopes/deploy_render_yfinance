@@ -60,7 +60,7 @@ if last_price is not None:
 else:
     st.error("Error fetching data")
 
-# Web scraping of Stock data
+# Arary info keys
 selected_keys = [
     "auditRisk",
     "boardRisk",
@@ -179,28 +179,17 @@ selected_keys = [
     "trailingPegRatio"
 ]
 
+# info_ticker = yf.Ticker(selected_ticker)
+# st.info(info_ticker)
 
+# Pegar os valores do ticket selecionado
+dict_all_values_ticker = yf.Ticker(selected_ticker)
+# pegar as info do ticket selecionado
+info_dict_ticker = dict_all_values_ticker.info
 
-# msft = yf.Ticker("MSFT")
-# st.info(msft.info['longBusinessSummary'])
-
-# st.info(msft.info['open'])
-
-
-# st.info(selected_ticker.info[selected_keys])
-
-# subset_dict = {key: original_dict[key] for key in selected_keys}
-info_text = ""
-for i in range(10):
-    info_text += f"{++i}"
-st.info(info_text)
-
-# Inicialize uma string vazia para concatenar informações
-# info_text = ""
-#
-# # Itere pelas chaves selecionadas e concatene as informações
-# for key in selected_keys:
-#     info_text += f"{key}: {selected_ticker[key]}\n"
-#
-# # Use st.info para exibir todas as informações em uma única chamada
-# st.info(info_text)
+# Concatenar as info selecionadas no array de chaves
+# st.info(info_dict_ticker)
+info_concat = ""
+for key in selected_keys:
+    info_concat += f"{key}: {info_dict_ticker[key]} \n\n"
+st.info(info_concat)
